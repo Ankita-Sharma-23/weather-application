@@ -1,66 +1,73 @@
-body{
-    margin-left: 30%;
-    font-family: sans-serif;
-    background-color: #000918;
+body {
+  margin-left: 30%;
+  font-family: sans-serif;
+  background-color: #000918;
 
-background-repeat: no-repeat;
-background-size: cover;
-    
+  background-repeat: no-repeat;
+  background-size: cover;
 }
-.main{
-    text-align: center;
-    width: 500px;
-    min-height: 600px;
-    border-radius: 20px;
-    /* background: url('WhatsApp Image 2021-10-18 at 7.48.12 PM.jpeg'); */
-/* background-color: #14222e; */
-background-color: #0093E9;
-background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 50%, #ffffff 100%);
-color: #fff;
-box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+.main {
+  text-align: center;
+  width: 500px;
+  min-height: 600px;
+  border-radius: 20px;
+  /* background: url('WhatsApp Image 2021-10-18 at 7.48.12 PM.jpeg'); */
+  /* background-color: #14222e; */
+  background-color: #0093e9;
+  background-image: linear-gradient(
+    160deg,
+    #5a7688 0%,
+    #70b8af 50%,
+    #ddd3d3 100%
+  );
+  color: #fff;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
 }
-h1{
-    color: #000918;;
+h1 {
+  color: #000918;
 }
-.weatherSpaceBox{
-    padding: 20px;
+.weatherSpaceBox {
+  padding: 20px;
 }
-.form{
-    display: inline-flex;
-    justify-content: space-between;
+.form {
+  display: inline-flex;
+  justify-content: space-between;
 }
-input{
-    width: 50%;
-    padding: 8px 10px;
-    border-radius: 4px;
-    outline: none;
-    border: navajowhite;
-    margin-right: 10px;
+input {
+  width: 80%;
+  padding: 8px 10px;
+  border-radius: 4px;
+  outline: none;
+  border: navajowhite;
+  margin-right: 10px;
 }
-.btn{
-    background-color: #000918;
-    color: #fff;
-    border: navajowhite;
-    padding: 0 10px;
-    border-radius: 3px;
+.btn {
+  background-color: #000918;
+  color: #fff;
+  border: navajowhite;
+  padding: 0 10px;
+  border-radius: 3px;
 }
 table {
-    border-collapse: collapse;
-    width: 80%;
-    margin: 0 auto;
-    background-color: #000918;
-    border-radius: 1em;
-  }
-  th {
-    background-color:#000918;
-    color: #fff;
-  }
-  
-  th, td {
-    text-align: left;
-    padding: 8px;
-    background-color:#000918;
-    color: #fff;
-  }
-  
-  tr:nth-child(even) {background-color: #f2f2f2;}
+  border-collapse: collapse;
+  width: 80%;
+  margin: 0 auto;
+  background-color: #000918;
+  border-radius: 1em;
+}
+th {
+  background-color: #000918;
+  color: #fff;
+}
+
+th,
+td {
+  text-align: center;
+  padding: 8px;
+  background-color: #000918;
+  color: #fff;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}

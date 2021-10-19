@@ -11,17 +11,13 @@ export const Weather = () => {
   const [description, setDescription] = useState<string>("");
   const [icon, setIcon] = useState<string>("");
   const [showMyComponent, setShowMyComponent] = useState<boolean>(false);
+  const [pressure,setPressure]= useState<string>("")
   
 
   const handleCity = (e: {
     target: { value: React.SetStateAction<string> };
   }) => {
     setCity(e.target.value);
-  };
-  const handleCountry = (e: {
-    target: { value: React.SetStateAction<string> };
-  }) => {
-    setCountry(e.target.value);
   };
   const handleClick = () => {
     getWeatherData(city, country);
@@ -42,6 +38,7 @@ export const Weather = () => {
         setMax(res.data.main.temp_max- 273.15);
         setMin(res.data.main.temp_min- 273.15);
         setHumidity(res.data.main.humidity);
+        setPressure(res.data.main.pressure);
         setShowMyComponent(true);
       })
       .catch((error) => {
@@ -57,15 +54,9 @@ export const Weather = () => {
         type="text"
         value={city}
         onChange={handleCity}
-        placeholder="select city name"
+        placeholder="ENTER THE CITY NAME"
       />
-      <input
-        type="text"
-        value={country}
-        onChange={handleCountry}
-        placeholder="select country name"
-      />
-      <button onClick={handleClick} className="btn">click</button>
+      <button onClick={handleClick} className="btn">Search</button>
       </div>
       {showMyComponent ? (
         <div>
@@ -87,11 +78,13 @@ export const Weather = () => {
                 <th>Minimum Temperature</th>
                 <th>Maximum Temperature</th>
                 <th>Humidity</th>
+                <th>Pressure</th>
               </tr>
               <tr>
                 <td>{Math.floor(min)}℃</td>
                 <td>{Math.floor(max)}℃</td>
                 <td>{humidity}</td>
+                <td>{pressure}</td>
               </tr>
             </table>
           </div>
