@@ -1,12 +1,15 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { Heading } from "./Table";
+import { Header, Heading } from "../Components/Table";
+import { Button } from "./Button";
+import { Input } from "./Input";
+import '../App.css'
 
 export const Weather = () => {
   const [city, setCity] = useState<string>("");
   const [temp, setTemp] = useState<number>(0);
-  const [minimumTemp, setMinimumTemp] = useState<number>(0);
-  const [maximumTemp, setMaximumTemp] = useState<number>(0);
+  const [minTemp, setMinTemp] = useState<number>(0);
+  const [maxTemp, setMaxTemp] = useState<number>(0);
   const [humidity, setHumidity] = useState<string>("");
   const [description, setDescription] = useState<string>("");
   const [icon, setIcon] = useState<string>("");
@@ -33,8 +36,8 @@ export const Weather = () => {
         setTemp(res.data.main.temp - 273.15);
         setIcon(res.data.weather[0].icon);
         setDescription(res.data.weather[0].description);
-        setMaximumTemp(res.data.main.temp_max - 273.15);
-        setMinimumTemp(res.data.main.temp_min - 273.15);
+        setMaxTemp(res.data.main.temp_max - 273.15);
+        setMinTemp(res.data.main.temp_min - 273.15);
         setHumidity(res.data.main.humidity);
         setPressure(res.data.main.pressure);
         setDisplay(true);
@@ -46,17 +49,10 @@ export const Weather = () => {
   return (
     <div className="main">
       <div className="weatherSpaceBox">
-        <h1>Weather Condition</h1>
+        <h1>{Header}</h1>
         <div className="form">
-          <input
-            type="text"
-            value={city}
-            onChange={handleCity}
-            placeholder="ENTER THE CITY NAME"
-          />
-          <button onClick={handleClick} className="btn">
-            Search
-          </button>
+            <Input type="text" value={city} placeholder="ENTER THE CITY NAME" onChange={handleCity}/>
+            <Button onClick={handleClick} className="btn"/>
         </div>
         {display ? ( 
           <div>
@@ -65,7 +61,7 @@ export const Weather = () => {
               <img
                 src={`http://openweathermap.org/img/wn/${icon}@2x.png`}
                 alt="weather-icon"
-                style={{ width: 200, height: 200 }}
+                width="200" height="200"
               />
             </div>
             <h1>{Math.floor(temp)}℃</h1>
@@ -78,8 +74,8 @@ export const Weather = () => {
                   })}
                 </tr>
                 <tr>
-                  <td>{Math.floor(minimumTemp)}℃</td>
-                  <td>{Math.floor(maximumTemp)}℃</td>
+                  <td>{Math.floor(minTemp)}℃</td>
+                  <td>{Math.floor(maxTemp)}℃</td>
                   <td>{humidity}</td>
                   <td>{pressure}</td>
                 </tr>
