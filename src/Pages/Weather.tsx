@@ -1,9 +1,9 @@
 import axios from "axios";
-import React, { useState } from "react";
-import { Header, Heading } from "../Components/Table";
-import { Button } from "./Button";
-import { Input } from "./Input";
-import '../App.css'
+import React, { useEffect, useState } from "react";
+import { Header, Heading } from "../Constants/heading";
+import { Headings } from "../Types/type";
+import { Button } from "../components/Button";
+import { Input } from "../components/Input";
 
 export const Weather = () => {
   const [city, setCity] = useState<string>("");
@@ -15,12 +15,8 @@ export const Weather = () => {
   const [icon, setIcon] = useState<string>("");
   const [display, setDisplay] = useState<boolean>(false);
   const [pressure, setPressure] = useState<string>("");
+  const [option, setOption] = useState<Headings[]>([]);
 
-  const handleCity = (e: {
-    target: { value: React.SetStateAction<string> };
-  }) => {
-    setCity(e.target.value);
-  };
   const handleClick = () => {
     getWeatherData(city);
   };
@@ -31,8 +27,6 @@ export const Weather = () => {
       url: `http://api.openweathermap.org/data/2.5/weather?q=${city},&appid=b3cd323b89ab55b940e9ec2862a1568b`,
     })
       .then((res: string | any) => {
-        console.log(res.data);
-        console.log(res.data.main.temp);
         setTemp(res.data.main.temp - 273.15);
         setIcon(res.data.weather[0].icon);
         setDescription(res.data.weather[0].description);
@@ -46,22 +40,37 @@ export const Weather = () => {
         console.log(error);
       });
   };
+
+  useEffect(() => {
+    setOption(Heading);
+  }, []);
+
   return (
     <div className="main">
       <div className="weatherSpaceBox">
-        <h1>{Header}</h1>
+        <h1>{Header.name}</h1>
         <div className="form">
-            <Input type="text" value={city} placeholder="ENTER THE CITY NAME" onChange={handleCity}/>
-            <Button onClick={handleClick} className="btn"/>
+          <Input
+            type="text"
+            value={city}
+            placeholder="ENTER THE CITY NAME"
+            onChange={(e: {
+              target: { value: React.SetStateAction<string> };
+            }) => {
+              setCity(e.target.value);
+            }}
+          />
+          <Button onClick={handleClick} className="btn" />
         </div>
-        {display ? ( 
+        {display ? (
           <div>
             <h1>{city}</h1>
             <div>
               <img
                 src={`http://openweathermap.org/img/wn/${icon}@2x.png`}
                 alt="weather-icon"
-                width="200" height="200"
+                width="200"
+                height="200"
               />
             </div>
             <h1>{Math.floor(temp)}℃</h1>
@@ -69,8 +78,8 @@ export const Weather = () => {
             <div className="table">
               <table>
                 <tr>
-                  {Heading.map((name) => {
-                    return <th>{name}</th>;
+                  {option.map((name) => {
+                    return <th>{name.value}</th>;
                   })}
                 </tr>
                 <tr>
