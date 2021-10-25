@@ -18,4 +18,5 @@ export const Heading = [
 ];
 export const Header = {
   name: "Weather Condition",
+  text:"text"
 };

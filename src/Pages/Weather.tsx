@@ -8,8 +8,8 @@ import { Input } from "../components/Input";
 export const Weather = () => {
   const [city, setCity] = useState<string>("");
   const [temp, setTemp] = useState<number>(0);
-  const [minTemp, setMinTemp] = useState<number>(0);
-  const [maxTemp, setMaxTemp] = useState<number>(0);
+  const [minTemperature, setMinTemperature] = useState<number>(0);
+  const [maxTemperature, setMaxTemperature] = useState<number>(0);
   const [humidity, setHumidity] = useState<string>("");
   const [description, setDescription] = useState<string>("");
   const [icon, setIcon] = useState<string>("");
@@ -20,7 +20,7 @@ export const Weather = () => {
   const handleClick = () => {
     getWeatherData(city);
   };
-
+ 
   const getWeatherData = async (city: string) => {
     await axios({
       method: "GET",
@@ -30,8 +30,8 @@ export const Weather = () => {
         setTemp(res.data.main.temp - 273.15);
         setIcon(res.data.weather[0].icon);
         setDescription(res.data.weather[0].description);
-        setMaxTemp(res.data.main.temp_max - 273.15);
-        setMinTemp(res.data.main.temp_min - 273.15);
+        setMaxTemperature(res.data.main.temp_max - 273.15);
+        setMinTemperature(res.data.main.temp_min - 273.15);
         setHumidity(res.data.main.humidity);
         setPressure(res.data.main.pressure);
         setDisplay(true);
@@ -51,7 +51,7 @@ export const Weather = () => {
         <h1>{Header.name}</h1>
         <div className="form">
           <Input
-            type="text"
+            type={Header.text}
             value={city}
             placeholder="ENTER THE CITY NAME"
             onChange={(e: {
@@ -60,7 +60,7 @@ export const Weather = () => {
               setCity(e.target.value);
             }}
           />
-          <Button onClick={handleClick} className="btn" />
+          <Button onClick={handleClick} className="btn" label={"Search"} />
         </div>
         {display ? (
           <div>
@@ -83,8 +83,8 @@ export const Weather = () => {
                   })}
                 </tr>
                 <tr>
-                  <td>{Math.floor(minTemp)}℃</td>
-                  <td>{Math.floor(maxTemp)}℃</td>
+                  <td>{Math.floor(minTemperature)}℃</td>
+                  <td>{Math.floor(maxTemperature)}℃</td>
                   <td>{humidity}</td>
                   <td>{pressure}</td>
                 </tr>
